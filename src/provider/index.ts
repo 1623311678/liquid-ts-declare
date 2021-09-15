@@ -49,7 +49,7 @@ export class Provider {
       }
     }
     return vscode.languages.registerCompletionItemProvider(
-      "liquid",
+      "plaintext",
       {
         provideCompletionItems(
           document: vscode.TextDocument,

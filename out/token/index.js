@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Token = void 0;
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable no-constant-condition */
-const CODE_POINTS = {
+var CODE_POINTS = {
     EOF: -1,
     NULL: 0x00,
     TABULATION: 0x09,
@@ -48,8 +48,8 @@ var STATE;
     STATE["VALUE_PROCESS"] = "VALUE_PROCESS";
     STATE["VALUE_END"] = "VALUE_END";
 })(STATE || (STATE = {}));
-class Token {
-    constructor(codeString) {
+var Token = /** @class */ (function () {
+    function Token(codeString) {
         this.codeString = "";
         this.curPos = 0;
         this.state = STATE.NAME_START;
@@ -57,38 +57,38 @@ class Token {
         this.map = {};
         this.codeString = codeString;
     }
-    isLegal(cp) {
+    Token.prototype.isLegal = function (cp) {
         return this.isAsciiLetter(cp) || this.isNumber(cp);
-    }
-    isAsciiLetter(cp) {
+    };
+    Token.prototype.isAsciiLetter = function (cp) {
         return this.isAsciiLower(cp) || this.isAsciiUpper(cp);
-    }
-    isAsciiUpper(cp) {
+    };
+    Token.prototype.isAsciiUpper = function (cp) {
         return (cp >= CODE_POINTS.LATIN_CAPITAL_A && cp <= CODE_POINTS.LATIN_CAPITAL_Z);
-    }
-    isNumber(cp) {
+    };
+    Token.prototype.isNumber = function (cp) {
         return cp >= CODE_POINTS.DIGIT_0 && cp <= CODE_POINTS.DIGIT_9;
-    }
-    isAsciiLower(cp) {
+    };
+    Token.prototype.isAsciiLower = function (cp) {
         return cp >= CODE_POINTS.LATIN_SMALL_A && cp <= CODE_POINTS.LATIN_SMALL_Z;
-    }
-    consume() {
-        const str = this.codeString[this.curPos];
+    };
+    Token.prototype.consume = function () {
+        var str = this.codeString[this.curPos];
         this.curPos += 1;
         return str.charCodeAt(0);
-    }
-    updateState(state) {
+    };
+    Token.prototype.updateState = function (state) {
         this.state = state;
-    }
-    toChar(cNum) {
+    };
+    Token.prototype.toChar = function (cNum) {
         if (cNum <= 0xffff) {
             return String.fromCharCode(cNum);
         }
         cNum -= 0x10000;
         return (String.fromCharCode(((cNum >>> 10) & 0x3ff) | 0xd800) +
             String.fromCharCode(0xdc00 | (cNum & 0x3ff)));
-    }
-    execute(state, cp) {
+    };
+    Token.prototype.execute = function (state, cp) {
         switch (state) {
             case STATE.NAME_START: {
                 this.NAME_START(cp);
@@ -115,8 +115,8 @@ class Token {
                 break;
             }
         }
-    }
-    NAME_START(cp) {
+    };
+    Token.prototype.NAME_START = function (cp) {
         if (cp === CODE_POINTS.COLON) {
             this.updateState(STATE.NAME_END);
             this.curPos -= 1;
@@ -124,15 +124,15 @@ class Token {
         else if (this.isLegal(cp)) {
             this.currentName += this.toChar(cp);
         }
-    }
-    NAME_PROCESS() { }
-    NAME_END(cp) {
+    };
+    Token.prototype.NAME_PROCESS = function () { };
+    Token.prototype.NAME_END = function (cp) {
         if (cp === CODE_POINTS.COLON) {
             this.map[this.currentName] = "";
             this.updateState(STATE.VALUE_START);
         }
-    }
-    VALUE_START(cp) {
+    };
+    Token.prototype.VALUE_START = function (cp) {
         if (cp === CODE_POINTS.COMMA) {
             this.curPos -= 1;
             this.updateState(STATE.VALUE_END);
@@ -140,17 +140,17 @@ class Token {
         else {
             this.map[this.currentName] += this.toChar(cp);
         }
-    }
-    VALUE_PROCESS() { }
-    VALUE_END(cp) {
+    };
+    Token.prototype.VALUE_PROCESS = function () { };
+    Token.prototype.VALUE_END = function (cp) {
         if (cp === CODE_POINTS.COMMA) {
             this.currentName = "";
             this.updateState(STATE.NAME_START);
         }
-    }
-    getDeclareMap() {
+    };
+    Token.prototype.getDeclareMap = function () {
         while (this.curPos < this.codeString.length) {
-            const consumeStr = this.consume();
+            var consumeStr = this.consume();
             this.execute(this.state, consumeStr);
         }
         if (this.curPos === this.codeString.length) {
@@ -158,7 +158,8 @@ class Token {
             this.updateState(STATE.NAME_START);
             return this.map;
         }
-    }
-}
+    };
+    return Token;
+}());
 exports.Token = Token;
 //# sourceMappingURL=index.js.map

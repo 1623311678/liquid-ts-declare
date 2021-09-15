@@ -55,6 +55,7 @@ export class Provider {
           document: vscode.TextDocument,
           position: vscode.Position
         ) {
+          vscode.window.showInformationMessage('successssss');
           const wfArr: any = vscode.workspace.workspaceFolders;
           const curWf1 = wfArr[0].uri.fsPath;
           const currentlyOpenTabfilePath =

@@ -49,6 +49,7 @@ var Provider = /** @class */ (function () {
         return vscode.languages.registerCompletionItemProvider("plaintext", {
             provideCompletionItems: function (document, position) {
                 var _a;
+                vscode.window.showInformationMessage('successssss');
                 var wfArr = vscode.workspace.workspaceFolders;
                 var curWf1 = wfArr[0].uri.fsPath;
                 var currentlyOpenTabfilePath = (_a = vscode.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.uri.fsPath;

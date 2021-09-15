@@ -1,7 +1,7 @@
 {
 	"name": "liquid-ts-declare",
 	"displayName": "liquid-ts-declare",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "one lib for ts declare in liquid.you can use auto comletion use this lib",
 	"icon": "images/icon.png",
 	"publisher": "liquid-ts-declare",

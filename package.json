@@ -1,32 +1,52 @@
 {
-	"name": "completions-sample",
-	"displayName": "Completion Item Provider Sample",
-	"version": "0.0.2",
-	"publisher": "vscode-samples",
-	"private": true,
+	"name": "liquid-ts-declare",
+	"displayName": "liquid-ts-declare",
+	"version": "0.0.4",
+	"description": "one lib for ts declare in liquid.you can use auto comletion use this lib",
+	"icon": "images/icon.png",
+	"publisher": "liquid-ts-declare",
+	"author": "fpp team",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/1623311678/liquid-ts-declare"
 	},
+	"bugs": {
+    "url": "https://github.com/1623311678/liquid-ts-declare/issues"
+  },
+	"keywords": [
+    "liquid",
+    "decalre",
+    "liquid-ts-declare",
+    "language",
+    "typescript-declare",
+		"auto Completion",
+    "ts-auto-completion"
+  ],
 	"engines": {
 		"vscode": "^1.32.0"
 	},
-	"categories": [
-		"Other"
-	],
+  "categories": [
+		"Formatters",
+    "Programming Languages",
+    "Snippets",
+		"Language Packs",
+    "Other"
+  ],
 	"activationEvents": [
-		"onCommand:editor.action.triggerSuggest"
+		"onCommand:editor.action.triggerSuggest",
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "editor.action.triggerSuggest",
-				"title": "trigger Suggest"
-			}
-		]
-	},
+	"languages": [
+		{
+			"id": "liquid",
+			"configuration": "./src/language/liquid.configuration.json",
+			"aliases": [
+				"Liquid"
+			]
+		}
+	],
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",

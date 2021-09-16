@@ -1,7 +1,7 @@
 {
 	"name": "liquid-ts-declare",
 	"displayName": "liquid-ts-declare",
-	"version": "1.0.7",
+	"version": "1.0.10",
 	"description": "one lib for ts declare in liquid.you can use auto comletion use this lib",
 	"icon": "images/icon.png",
 	"publisher": "liquid-ts-declare",
@@ -34,7 +34,8 @@
     "Other"
   ],
 	"activationEvents": [
-		"onLanguage:plaintext"
+		"onLanguage:plaintext",
+		"onLanguage:liquid"
 	],
 	"main": "./out/extension.js",
 	"scripts": {
@@ -43,13 +44,29 @@
 		"lint": "eslint . --ext .ts,.tsx",
 		"watch": "tsc -watch -p ./"
 	},
+	"contributes": {
+    "languages": [
+      {
+        "id": "liquid",
+        "extensions": [
+          ".liquid"
+        ],
+        "aliases": [
+          "Liquid",
+					"liquid"
+        ]
+      }
+    ]
+  },
 	"devDependencies": {
 		"@types/node": "^12.12.0",
 		"@types/vscode": "^1.32.0",
 		"@typescript-eslint/eslint-plugin": "^4.16.0",
 		"@typescript-eslint/parser": "^4.16.0",
 		"eslint": "^7.21.0",
-		"ts-morph": "12.0.0",
 		"typescript": "^4.3.5"
+	},
+	"dependencies": {
+    "ts-morph": "12.0.0"
 	}
 }

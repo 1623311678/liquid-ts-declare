@@ -6,15 +6,18 @@ import { Token } from "../token";
 import * as vscode from "vscode";
 const startFlag = "{%comment%}";
 const endFlag = "{%endcomment%}";
+interface NS {
+  [key: string]: any
+}
 export class Provider {
-  private nameSpace: Object = {};
-  constructor(ns: Object) {
+  private nameSpace:  NS = {};
+  constructor(ns:  NS) {
     this.nameSpace = ns;
   }
   getProvider() {
-    const ns: any = this.nameSpace;
+    const ns:  NS = this.nameSpace;
     let res: any[] = [];
-    function generate(declareObj: any, linePrefix: string, key: string) {
+    function generate(declareObj: NS, linePrefix: string, key: string) {
       for (const key2 in declareObj) {
         if (linePrefix.endsWith(`${key}.`)) {
           res.push(
@@ -26,7 +29,7 @@ export class Provider {
         }
       }
     }
-    function getDeclareArrByMap(map: any, linePrefix: string) {
+    function getDeclareArrByMap(map: NS, linePrefix: string) {
       res = [];
       const interateMap = map;
       let declare: any = {};
@@ -35,7 +38,7 @@ export class Provider {
         declare = declareObj;
         generate(declareObj, linePrefix, key);
       }
-      function interate(params: any,K:any) {
+      function interate(params: NS,K:string) {
 				generate(params, linePrefix, K);
         for (const keyP in params) {
           if (Object.keys(params[keyP]).length > 0) {
@@ -49,15 +52,14 @@ export class Provider {
       }
     }
     return vscode.languages.registerCompletionItemProvider(
-      "plaintext",
+      ["plaintext","liquid"],
       {
         provideCompletionItems(
           document: vscode.TextDocument,
           position: vscode.Position
         ) {
-          vscode.window.showInformationMessage('successssss');
-          const wfArr: any = vscode.workspace.workspaceFolders;
-          const curWf1 = wfArr[0].uri.fsPath;
+          // const wfArr: any = vscode.workspace.workspaceFolders;
+          // const curWf1 = wfArr[0].uri.fsPath;
           const currentlyOpenTabfilePath =
             vscode.window.activeTextEditor?.document.uri.fsPath;
           const data = fs.readFileSync(
@@ -80,7 +82,7 @@ export class Provider {
           const linePrefix = document
             .lineAt(position)
             .text.substr(0, position.character);
-          getDeclareArrByMap(declareMap, linePrefix);
+          getDeclareArrByMap((declareMap as NS), linePrefix);
           return res;
         },
       },

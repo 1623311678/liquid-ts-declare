@@ -8,7 +8,7 @@ var vscode = require("vscode");
 var ts_morph_1 = require("ts-morph");
 var Util_1 = require("./Util");
 var provider_1 = require("./provider");
-var NAME_SPECE = null;
+var NAME_SPECE = {};
 function init() {
     var wfArr = vscode.workspace.workspaceFolders;
     if (wfArr && wfArr[0]) {

@@ -5,7 +5,7 @@ import * as vscode from "vscode";
 import { Project } from "ts-morph";
 import { getNameSpaceObjByFile } from "./Util";
 import { Provider } from "./provider";
-let NAME_SPECE: any = null;
+let NAME_SPECE: { [key: string]: any } = {};
 function init() {
   const wfArr: any = vscode.workspace.workspaceFolders;
   if (wfArr && wfArr[0]) {

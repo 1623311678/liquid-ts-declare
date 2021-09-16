@@ -46,12 +46,11 @@ var Provider = /** @class */ (function () {
                 interate(params, keyD);
             }
         }
-        return vscode.languages.registerCompletionItemProvider("plaintext", {
+        return vscode.languages.registerCompletionItemProvider(["plaintext", "liquid"], {
             provideCompletionItems: function (document, position) {
                 var _a;
-                vscode.window.showInformationMessage('successssss');
-                var wfArr = vscode.workspace.workspaceFolders;
-                var curWf1 = wfArr[0].uri.fsPath;
+                // const wfArr: any = vscode.workspace.workspaceFolders;
+                // const curWf1 = wfArr[0].uri.fsPath;
                 var currentlyOpenTabfilePath = (_a = vscode.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.uri.fsPath;
                 var data = fs.readFileSync(String(currentlyOpenTabfilePath), "utf8");
                 var codeString = data

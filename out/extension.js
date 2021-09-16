@@ -21,7 +21,7 @@ function init() {
 }
 init();
 function activate(context) {
-    if (!NAME_SPECE) {
+    if (Object.keys(NAME_SPECE).length === 0) {
         init();
     }
     var ns = NAME_SPECE;

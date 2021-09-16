@@ -18,7 +18,7 @@ function init() {
 }
 init();
 export function activate(context: vscode.ExtensionContext) {
-  if (!NAME_SPECE) {
+  if (Object.keys(NAME_SPECE).length === 0) {
     init();
   }
   const ns = NAME_SPECE;

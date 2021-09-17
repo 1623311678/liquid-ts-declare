@@ -1,3 +1,5 @@
+
+
 ## liquid-ts-declare
 
 One vscode plugin that can use TS declarations in [liquid](https://liquidjs.com/) files .
@@ -16,7 +18,7 @@ Open your vscode and search for [liquid-ts-declare](https://marketplace.visualst
 
 ### 2 how to use:
  #### 1) Create folder: 
-   Create folder a and create a src folder.you can call it anything, like test in this case.
+   Create folder a and create a types folder.you can call it anything, like test in this case.
  To initialize the tsconfig.json file, run the tsc --init command in the test directory (the project root directory).After that, you'll notice that you have the tsconfig.json     file in your test directory.
       
  #### 2) generate .d.ts files :
@@ -81,26 +83,13 @@ aa:SubscribeEmailDataType
  
  ## Tips:
  
- #### 1) Make sure there is a src directory in the root directory and that all .d.ts files are in the src directory.
+ #### 1) Make sure there is a types directory in the root directory and that all .d.ts files are in the types directory.
  #### 2) The ts declaration must be exported, otherwise when you run the tsc command, the generated .d.ts file will not contain your declaration.
  #### 3) There is no need to import where declarations are used, just as in step 2 .
  #### 4) what is {% comment %} {% endcomment %} ?
 The comment tag lets you write in the Liquid template without output. Anything written between the start and end of comment tags will not be printed, or executed if it is Liquid code.
  
  
- 
-    
-    
-    
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
+ ### Thanks to 
+  - [VSCode HTML snippets](https://github.com/abusaidm/html-snippets/issues/27#issuecomment-282512411)
+  - [LSP Sample](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide)

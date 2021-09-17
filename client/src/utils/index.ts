@@ -2,7 +2,8 @@ const NAME_SPECE: any = {};
 function getMembers(data: any, target: any) {
   for (let j = 0; j < data.length; j += 1) {
     const current = data[j];
-    const name = data[j].name.escapedText;
+    if(!current || ! current.name)return;
+    const name = current.name.escapedText;
     if (current?.type?.members) {
       const curTypeMembers = current.type.members;
       target[name] = {};

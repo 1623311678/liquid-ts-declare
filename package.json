@@ -1,7 +1,7 @@
 {
 	"name": "ts-declare-liquid",
 	"displayName": "ts-declare-liquid",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "one lib for ts declare in liquid.you can use auto comletion use this lib",
 	"icon": "images/icon.png",
 	"publisher": "liquid-ts-declare",
@@ -12,27 +12,27 @@
 		"url": "https://github.com/1623311678/liquid-ts-declare"
 	},
 	"bugs": {
-    "url": "https://github.com/1623311678/liquid-ts-declare/issues"
-  },
+		"url": "https://github.com/1623311678/liquid-ts-declare/issues"
+	},
 	"keywords": [
-    "liquid",
-    "decalre",
-    "liquid-ts-declare",
-    "language",
-    "typescript-declare",
+		"liquid",
+		"decalre",
+		"liquid-ts-declare",
+		"language",
+		"typescript-declare",
 		"auto Completion",
-    "ts-auto-completion"
-  ],
+		"ts-auto-completion"
+	],
 	"engines": {
 		"vscode": "^1.32.0"
 	},
-  "categories": [
+	"categories": [
 		"Formatters",
-    "Programming Languages",
-    "Snippets",
+		"Programming Languages",
+		"Snippets",
 		"Language Packs",
-    "Other"
-  ],
+		"Other"
+	],
 	"activationEvents": [
 		"onLanguage:plaintext",
 		"onLanguage:liquid"
@@ -110,7 +110,7 @@
 		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
 		"test": "sh ./scripts/e2e.sh",
-		"release":"vsce package && vsce publish"
+		"release": "vsce package && vsce publish"
 	},
 	"devDependencies": {
 		"@types/mocha": "^8.2.2",
@@ -120,5 +120,9 @@
 		"eslint": "^7.26.0",
 		"mocha": "^8.3.2",
 		"typescript": "^4.3.5"
+	},
+	"dependencies": {
+		"ts-morph": "^12.0.0",
+		"vscode-languageclient": "^7.0.0"
 	}
 }
